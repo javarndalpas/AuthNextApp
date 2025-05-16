@@ -1,3 +1,4 @@
+"use client"
 import React from "react"
 
 export default function SignUpPage() {
@@ -14,11 +15,11 @@ export default function SignUpPage() {
 
     return (
         <>
-            <div className="flex">
+            <div className="">
                 <h1>SignUp</h1>
                 <hr />
                 <label htmlFor="username">UserName</label>
-                <input type="text"
+                <input className="p-2" type="text"
                     id="username"
                     value={user.username}
                     onChange={(e) => setUser({ ...user, username: e.target.value })}
