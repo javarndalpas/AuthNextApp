@@ -32,7 +32,7 @@ export default function SignUpPage() {
 
                 <form className="max-w-md mx-auto mt-18">
                     <h1 >Signup</h1>
-
+                    <h1>tesing changes</h1>
                     <div className="mb-5">
                         <label htmlFor="username-success" className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Username</label>
                         <input type="text"
