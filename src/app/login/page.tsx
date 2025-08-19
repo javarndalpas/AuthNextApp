@@ -15,8 +15,6 @@ export default function LoginPage() {
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [loading, setLoading] = useState(false);
 
-
-
     const onLogIn = async () => {
 
         try {
@@ -25,7 +23,7 @@ export default function LoginPage() {
             const response = await axios.post("/api/users/login", user)
             console.log("login successful", response.data);
             toast.success("Login successful")
-            // router.push("/profile")
+             router.push("/profile")
         } catch (error: any) {
             console.log("Login failed", error.message)
             toast.error(error.message)
@@ -42,7 +40,6 @@ export default function LoginPage() {
             ...user,
             [name]: value
         }))
-
     }
 
     useEffect(() => {
@@ -72,10 +69,11 @@ export default function LoginPage() {
 
                     <button type="button" onClick={onLogIn} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 
-                    <h1>Don't have an account? <Link className="text-blue-600" rel="stylesheet" href="/signup">Signin</Link> </h1>
+                    <h1>Don't have an account? <Link className="text-blue-600" rel="stylesheet" href="/signup">Signup</Link> </h1>
                 </form>
             </div>
         </>
     )
 }
+
 
