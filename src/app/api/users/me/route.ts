@@ -1,14 +1,27 @@
 import { connect } from "@/dbConfig/dbConfig";
-import { NextRequest } from "next/server";
+import { getDataFromToken } from "@/helpers/getDataFromToken";
+import User from "@/models/userModel";
+import { NextRequest, NextResponse } from "next/server";
 
 connect()
+export async function GET(request: NextRequest) {
 
-export async function GET(request:NextRequest){
-
-    try{
-
+    try {
+        const userId = await getDataFromToken(request);
+        console.log("====usdId",userId)
+        
+        const user = await User.findOne({ _id: userId });
+        console.log("====usd",user)
+        return NextResponse.json({
+            massage: " user found",
+            data: user
+        })
     }
-    catch(error:any){
-        throw new Error( error)
+
+    catch (error: any) {
+        return NextResponse.json(
+            { error: error.massage },
+            { status: 400 }
+        );
     }
 }
