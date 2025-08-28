@@ -9,7 +9,7 @@ connect(); // Connect to DB
 export async function POST(request: NextRequest) {
   try {
     const { username, email, password } = await request.json();
-
+    console.log(username, email, password)
     // Check for existing user
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -28,15 +28,16 @@ export async function POST(request: NextRequest) {
     });
 
     const savedUser = await newUser.save();
+    console.log(savedUser,
+      "vvvvv user"
+    )
+
     // send Verification email ======
     await sendEmail({
       email,
       emailType: "VERIFY",
       userId: savedUser._id
     })
-
-
-
 
     return NextResponse.json({
       message: "User created successfully",
