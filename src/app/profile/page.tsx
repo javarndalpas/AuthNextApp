@@ -24,10 +24,10 @@ export default function ProfilePage() {
     }
     const getUserDetails = async () => {
         try{
-            console.log("========majoj--")
+           // console.log("========majoj--")
 
             const res = await axios.get('/api/users/me')
-            console.log(res.data,"========majoj")
+            // console.log(res.data,"========majoj")
             setData(res.data.data._id)
         }catch(error:any){
             console.log(error);

@@ -4,9 +4,8 @@ import nodemailer from "nodemailer";
 
 export const sendEmail = async ({ email, emailType, userId }: any) => {
   
-    console.log("enter========de","bb")
     const hashedToken = await bcryptjs.hash(userId.toString(), 10)
-    console.log("enter========de", hashedToken)
+    // console.log("enter========de", hashedToken)
 
     if (emailType === "VERIFY") {
         await User.findByIdAndUpdate(userId, { verifyToken: hashedToken, verifyTokenExpiry: Date.now() + 3600000 })
@@ -27,7 +26,7 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
         from: "alpas@123",
         to: email,
         subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
-        html: ` <p> <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">click here<a/> to ${emailType === "VERIFY" ? "verify your email" : "Reset your Password"} or copy and paste the sam elink in your browser.
+        html: ` <p> <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">click here<a/> to ${emailType === "VERIFY" ? "verify your email" : "Reset your Password"} or copy and paste the same link in your browser.
         <br>
         ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
         <p/>`

@@ -19,9 +19,9 @@ export default function LoginPage() {
 
         try {
             setLoading(true);
-            console.log(user);
+            // console.log(user);
             const response = await axios.post("/api/users/login", user)
-            console.log("login successful", response.data);
+            // console.log("login successful", response.data);
             toast.success("Login successful")
              router.push("/profile")
         } catch (error: any) {
@@ -34,7 +34,7 @@ export default function LoginPage() {
 
     const handleChange = (e) =>{
         const {name,value} = e.target;
-        console.log(name,value);
+       // console.log(name,value);
 
         setUser((user)=>({
             ...user,

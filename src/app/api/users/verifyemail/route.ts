@@ -9,23 +9,22 @@ export async function POST(request: NextRequest) {
     try {
         const reqbody = await request.json();
         const { token } = reqbody;
-        console.log(token);
+        // console.log(token, "token");
         const user = await User.findOne({
             verifyToken: token,
             verifyTokenExpiry: { $gt: Date.now() }
         });
 
-        console.log("enter", user);
+        // console.log("enter", user);
         if (!user) {
             return NextResponse.json({ error: "invalid Token" },
                 { status: 400 }
             )
         }
-
+        user.isVerified = true;
+        user.verifiedToken = undefined;
+        user.verifyTokenExpiry = undefined;
         console.log(user, "=====");
-        user.isVerified == "true";
-        user.verifiedToken = "undefined";
-        user.verifyTokenExpiry = "undefined";
          await user.save();
         
         return NextResponse.json({
